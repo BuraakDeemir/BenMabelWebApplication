@@ -1,0 +1,22 @@
+﻿@model List<CategoryDto>
+        <div class="nav-wrap">
+            <nav id="mainnav" class="mainnav">
+                <ul class="menu">
+
+                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                    <li>
+                        <a asp-area="" asp-controller="Product" asp-action="Index">Ürünler</a>
+                        <ul class="submenu">
+                            @foreach (var item in Model)
+                            {
+                                <li><a asp-area="" asp-controller="Product" asp-action="ProductsByCategory" asp-route-categoryId="@item.Id">@item.CategoryName</a></li>
+                            }
+                        </ul>
+                    </li>
+
+                    <li><a asp-area="" asp-controller="Blog" asp-action="Index">Blog</a></li>
+                    <li><a asp-area="" asp-controller="AboutUs" asp-action="Index">Hakkımızda</a></li>
+                    <li><a asp-area="" asp-controller="Contact" asp-action="Index">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>

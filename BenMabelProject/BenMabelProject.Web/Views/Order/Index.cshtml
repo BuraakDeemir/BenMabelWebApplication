@@ -1,0 +1,96 @@
+﻿@model OrderDto
+
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">SEPET</h1>
+                </div>
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                        <li><a asp-controller="Order" asp-action="Index">Sepet</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-11">
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <div class="row"><div class="col-12" style="font-family:Verdana; font-style:italic; color:black; font-size:15px;">Müşteri  : @Model.person.Name @Model.person.Surname</div></div>
+                    <div class="row"><div class="col-12" style="font-family:Verdana; font-style:italic;  color:black; font-size:15px;">Telefon  : @Model.phone.Iphone</div></div>
+                    <div class="row"><div class="col-12" style="font-family:Verdana; font-style:italic;  color:black; font-size:15px;">Email    : @Model.email.Email</div></div>
+                </div>
+                <div class="col-6">
+                    <div class="row"><div class="col-12 text-right" style="font-family:Verdana; font-style:italic; color:black; font-size:15px;">Adres Bilgileri</div></div>
+                    <div class="row"><div class="col-12 text-right" style="font-family:Verdana; font-style:italic; color:black; font-size:15px;">@Model.adress.Ctiy , @Model.adress.District</div></div>
+                    <div class="row"><div class="col-12 text-right" style="font-family:Verdana; font-style:italic; color:black; font-size:15px;">@Model.adress.Street , @Model.adress.Neighbourhood , @Model.adress.Detail</div></div>
+                </div>
+            </div>
+            <br />
+            <div class="row"><div class="col-12 text-center" style="font-family:Verdana; color:darkred; font-size:23px; margin-bottom:10px;"><strong>Ürünler</strong></div></div>
+            <div class="row">
+                <div class="col-1"><strong></strong></div>
+                <div class="col-2"><strong>Ürün</strong></div>
+                <div class="col-1"><strong>Adet</strong></div>
+                <div class="col-2"><strong>Ürün Fiyatı</strong></div>
+                <div class="col-2"><strong>Vergiler</strong></div>
+                <div class="col-4"><strong>Toplam Tutar</strong></div>
+            </div>
+            @foreach (var item in Model.basketDetails)
+            {
+                var price = Convert.ToDouble(item.Price);
+                var Tex = item.KDV;
+                var totalPrice = (price * Tex) + price;
+                var TexPrice = price * Tex;
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-2"><strong><a asp-controller="Product" asp-action="ProductDetail" asp-route-ProductId="@item.ProductId">@item.ProductName</a></strong></div>
+                    <div class="col-1">@item.Piece</div>
+                    <div class="col-2">@TexPrice TL</div>
+                    <div class="col-2">@totalPrice TL</div>
+                    <div class="col-4">@item.TotalPrice TL</div>
+                </div>
+
+                <br />
+            }
+            @{
+                double TotalPrice = 0;
+                double TotalTex = 0;
+            @foreach (var item in Model.basketDetails)
+            {                   
+                double _totalPrice =((Convert.ToDouble(item.Price) * item.KDV) +Convert.ToDouble(item.Price)) * item.Piece;
+                double _TexPrice = (Convert.ToDouble(item.Price) * item.KDV) * item.Piece;
+                    TotalPrice = _totalPrice + TotalPrice;
+                    TotalTex = TotalTex + _TexPrice;
+               
+            }
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row"><div class="col-12 text-left" style="font-family:Verdana; color:black; font-size:15px;"></div></div>
+                        <div class="row"><div class="col-12 text-left" style="font-family:Verdana;  color:white; font-size:15px;"><br /><a class="btn btn-danger" asp-controller="Order" asp-Action="AddOrder">Siparişi Onayla</a></div></div>
+                        <div class="row"><div class="col-12 text-left" style="font-family:Verdana; font-style:italic; color:black; font-size:9px;">14 Gün İçerisnde İade Edebilirsiniz...</div></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row"><div class="col-12 text-right" style="font-family:Verdana; color:black; font-size:15px;"><strong>Ödenecek Toplam Tutar : @TotalPrice TL </strong></div></div>
+                        <div class="row"><div class="col-12 text-right" style="font-family:Verdana; color:black; font-size:15px;"><strong>Vergiler Toplamı : @TotalTex TL</strong></div></div>
+                        <div class="row"><div class="col-12 text-right" style="font-family:Verdana; color:black; font-size:15px;"><strong>Ödeme Şekli : Kapıda Ödeme</strong> </div></div>
+                    </div>
+                   
+                   
+                </div>
+            }
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+</div>

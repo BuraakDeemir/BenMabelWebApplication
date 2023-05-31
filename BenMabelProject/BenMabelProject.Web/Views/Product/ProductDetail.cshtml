@@ -1,0 +1,154 @@
+﻿@model ProductDto
+
+<div class="boxed">
+
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-title-heading">
+                        <h1 class="title">Ürünler</h1>
+                    </div>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                            <li><a asp-controller="Product" asp-action="Index">Ürünler</a></li>
+                            <li><a>@Model.ProductName</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form asp-controller="Product" asp-action="ProductDetail" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CategoryId" />
+        <input type="hidden" asp-for="ProductImg" />
+        <input type="hidden" asp-for="ProductDetail" />
+        <input type="hidden" asp-for="ProductPrice" />
+        <input type="hidden" asp-for="Category" />
+        <input type="hidden" asp-for="ProductName" />
+        <section class="flat-row main-shop shop-detail style-1">
+    <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="wrap-flexslider">
+                        <div class="inner padding-top-5">
+                            <div class="flexslider style-2 has-relative">
+                                <ul class="slides">
+                                    <li data-thumb="/images/@Model.ProductImg.Img_1_Sml_FileName">
+                                        <img src="~/images/@Model.ProductImg.Img_1_FileName" alt="Image">
+                                        <div class="flat-icon style-1">
+                                            <a href="~/images/@Model.ProductImg.Img_1_FileName" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                        </div>
+                                    </li>
+                                    <li data-thumb="/images/@Model.ProductImg.Img_2_Sml_FileName">
+                                        <img src="~/images/@Model.ProductImg.Img_2_FileName" alt="Image">
+                                        <div class="flat-icon style-1">
+                                            <a href="~/images/@Model.ProductImg.Img_2_FileName" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                        </div>
+                                    </li>
+                                    <li data-thumb="/images/@Model.ProductImg.Img_3_Sml_FileName">
+                                        <img src="~/images/@Model.ProductImg.Img_3_FileName" alt="Image">
+                                        <div class="flat-icon style-1">
+                                            <a href="~/images/@Model.ProductImg.Img_3_FileName" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                        </div>
+                                    </li>
+                                    <li data-thumb="/images/@Model.ProductImg.Img_4_Sml_FileName">
+                                        <img  src="~/images/@Model.ProductImg.Img_4_FileName" alt="Image">
+                                        <div class="flat-icon style-1">
+                                            <a href="~/images/@Model.ProductImg.Img_4_FileName" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="divider h0"></div>
+                    <div class="product-detail">
+                        <div class="inner">
+                            <div class="content-detail">
+                                <h2 class="product-title">@Model.ProductName</h2>
+                                   
+                                <br /><br />
+                                <p>@Model.ProductDetail.detail</p>
+
+
+
+                                <div class="price margin-top-30">
+                                    @{
+                                        double price = Convert.ToDouble(Model.ProductPrice.Price);
+                                        double kdv = Convert.ToDouble(Model.ProductPrice.KDV);
+                                        double total = (price * kdv) + price;
+                                        <ins class="no-padding">
+                                   
+
+                                   <span class="amount">@total TL</span>
+                                  </ins>}
+                                        </div>
+                                
+                                <label asp-for="Id">@Model.Id</label>
+                                    <span asp-validation-for="Id" class="text-danger"></span>
+                                 <div class="product-quantity margin-top-44">
+                                    <div class="quantity">
+
+
+
+                                 <input asp-for="Adet" type="text" class="quantity-number" />
+                                            <span class="inc quantity-button">+</span>
+                                            <span class="dec quantity-button">-</span>
+                                    </div>
+                                    <div class="add-to-cart">
+                                            <button type="submit">Sepete Ekle</button>
+                                    </div>
+                                </div>
+                                   
+                                <div class="product-categories margin-top-22">
+
+                                    <span>Kategori: </span><a href="#">@Model.Category.CategoryName</a>
+                                </div>
+                                <ul class="flat-socials margin-top-15">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="flat-row shop-detail-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flat-tabs style-1 has-border">
+                        <div class="inner">
+                            <ul class="menu-tab">
+                                <li class="active">Ürün Açıklaması</li>
+                            </ul>
+                            <div class="content-tab">
+                                <div class="content-inner">
+                                    <div class="inner max-width-77 padding-top-33 padding-left-7">
+                                        <p>@Model.ProductDetail.detail</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </form>
+    <a class="go-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>

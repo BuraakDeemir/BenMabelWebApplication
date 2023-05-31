@@ -1,0 +1,11 @@
+﻿@model List<CategoryDto>
+
+@foreach (var item in Model)
+{
+    <li class="m-1"><a href="#" data-filter=".@item.CategoryTag">@item.CategoryName</a></li>
+}
+
+@*<li><a href="#" data-filter=".man">Oturma Odası</a></li>
+<li><a href="#" data-filter=".woman">Yatak Odası</a></li>
+<li><a href="#" data-filter=".accessories">Çocuk Odası</a></li>
+<li><a href="#" data-filter=".accessories">Mutfak</a></li>*@

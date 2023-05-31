@@ -1,0 +1,125 @@
+﻿
+@model CustomerAddDto
+
+<div class="container flex-grow-1 container-p-y">
+    <form asp-controller="User" asp-action="SginIn" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" style="color:red"></div>
+       
+        <div class="row my-4">
+            <div class="col-md-12 text-center">
+                <div>
+                    <h2 class="fw-bold py-3 mb-2">Üyelik Oluştur</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-md-12">
+                        <div>
+                            <input asp-for="FirstName" type="text" class="form-control" id="defaultFormControlInput" placeholder="İsim" aria-describedby="defaultFormControlHelp">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-md-12">
+                        <div>
+                            <input asp-for="LastName" type="text" class="form-control" id="defaultFormControlInput" placeholder="Soyisim" aria-describedby="defaultFormControlHelp">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-md-12">
+                        <div>
+                            <input asp-for="Password" type="password" class="form-control" id="defaultFormControlInput" placeholder="Şifre" aria-describedby="defaultFormControlHelp">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-md-12">
+                        <div>
+                            <input asp-for="Email" type="email" class="form-control" id="defaultFormControlInput" placeholder="Email" aria-describedby="defaultFormControlHelp">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-md-12">
+                        <div>
+                            <input asp-for="PhoneNumber" type="tel" class="form-control" id="defaultFormControlInput" placeholder="Telefon Numarası" aria-describedby="defaultFormControlHelp">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-md-12" style="margin-left:10px;">
+                <div>
+                    <h3>Adres Bilgileri</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-md-6">
+                <div>
+                    <select asp-for="Ctiy" class="form-select" aria-label="Default select example">
+                        <option selected>Şehir</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <span asp-validation-for="Ctiy" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <select asp-for="District" class="form-select" aria-label="Default select example">
+                        <option selected>İlçe</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <span asp-validation-for="District" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="row my-4">
+            <div class="col-md-6">
+                <div>
+                    <select asp-for="Neighbourhood" class="form-select" aria-label="Default select example">
+                        <option selected>Mahalle</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <span asp-validation-for="Neighbourhood" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <select asp-for="Street" class="form-select" aria-label="Default select example">
+                        <option selected>Sokak</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="row my-4">
+            <div class="col-md-12">
+                <div>
+                   <textarea asp-for="Detail" class="form-text" placeholder="Açık Adres"></textarea>
+                    <span asp-validation-for="Detail" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group"><button type="submit" class="btn btn-danger btn-block">Kayıt Ol</button> </div>
+    </form>
+    <br /><br /><br /><br />
+</div>

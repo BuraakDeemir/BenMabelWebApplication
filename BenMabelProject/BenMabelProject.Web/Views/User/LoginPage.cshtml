@@ -1,0 +1,74 @@
+﻿@model UserLoginDto
+
+<form asp-controller="User" asp-action="Login">
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="container">
+                    <div class="row" style="margin-top:30px;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6" style="margin-bottom:30px;">
+                            <h2>Lütfen Giriş Yapın</h2>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-11" style="margin-bottom:20px;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div>
+                                        <input asp-for="Email" type="text"
+                                               class="form-control"
+                                               placeholder="Kullanıcı Adı"
+                                               aria-describedby="defaultFormControlHelp" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11" style="margin-bottom:20px;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div>
+                                        <input asp-for="Password" type="password"
+                                               class="form-control"
+                                               placeholder="Şifre"
+                                               aria-describedby="defaultFormControlHelp" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-11" style="margin-bottom:5px;">
+                            <button type="submit" class="btn btn-danger btn-block btn-lg">Giriş Yap</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-3" style="margin-bottom:20px;">
+                            <a href="">Şifremi Unuttum</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11" style="margin-bottom:5px;">
+                            <button type="button" onclick="location.href='@Url.Action("SginIn", "User")'" class="btn btn-success btn-block btn-lg">Üye Ol</button>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+           
+</form>

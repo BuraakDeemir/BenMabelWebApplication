@@ -1,0 +1,74 @@
+﻿@model List<ArticleDto>
+<div id="loading-overlay">
+    <div class="loader"></div>
+</div>
+
+<div class="boxed">
+    <div id="site-header-wrap">
+    </div>
+
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-title-heading">
+                        <h1 class="title">AhşapBlog</h1>
+                    </div>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                            <li><a asp-controller="Blog" asp-action="Index">Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="blog-posts style2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="post-wrap style2">
+                       
+                        <!-- DataBase -->
+                        @foreach (var item in Model)
+                        {
+
+
+                            <article class="post clearfix">
+                                <div class="featured-post">
+                                    <img src="~/images/@item.Image.Sml_FileName" alt="image">
+                                </div>
+                                <div class="content-post">
+                                    <div class="title-post">
+                                        <h2><a asp-controller="Blog" asp-action="Detail" asp-route-Id="@item.Id">@item.Title</a></h2>
+                                    </div>
+                                    <ul class="meta-post">
+                                        <li class="author">
+                                            <span>Yazar: </span><a href="#">Admin</a>
+                                        </li>
+                                        <li class="author">
+                                            <span>Tarih: </span><a href="#">@item.CreatedDate</a>
+                                        </li>
+                                    </ul>
+                                    <div class="entry-post">
+                                        <p>@item.SmlContent</p>
+                                        <div class="more-link">
+                                            <a asp-controller="Blog" asp-action="Detail" asp-route-Id="@item.Id">Daha Fazla</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- DataBase -->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a class="go-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>

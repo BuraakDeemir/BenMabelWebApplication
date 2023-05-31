@@ -1,0 +1,263 @@
+﻿@using BenMabelProject.Entity.DtoS.Orders;
+@model OrderDetailDto
+
+
+<div class="col-lg-12 col-md-4 order-1">
+    <div class="col-lg-12 mb-4 order-0">
+        <div class="card">
+            <div class="d-flex align-items-end row">
+                <div class="col-sm-12">
+                   
+                    <div class="card-body">
+                        <h4>Müşteri Bilgileri</h4>
+                        <div class="row mb-2">
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Müşteri Adı Soyadı</span>
+                                        <h3 class="card-title mb-2">@Model.person.Name @Model.person.Surname</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Kullanıcı Numarası</span>
+                                        <h3 class="card-title mb-2">@Model.person.PersonUser.Id</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row mb-2">
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Telefon</span>
+                                        @foreach (var item in Model.phone)
+                                        {
+                                            <h3 class="card-title mb-2">@item.Iphone</h3>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Email</span>
+                                        @foreach (var item in Model.email)
+                                        {
+                                            <h3 class="card-title mb-2">@item.Email</h3>
+                                        }
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-lg-12 col-md-4 order-1">
+    <div class="col-lg-12 mb-4 order-0">
+        <div class="card">
+            <div class="d-flex align-items-end row">
+                <div class="col-sm-12">
+
+                    <div class="card-body">
+                        <h4>Adres Bilgileri</h4>
+                        <div class="row mb-2">
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Şehir</span>
+                                        @foreach (var item in Model.adress)
+                                        {
+                                            <h3 class="card-title mb-2">@item.Ctiy</h3>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">İlçe</span>
+                                        @foreach (var item in Model.adress)
+                                        {
+                                            <h3 class="card-title mb-2">@item.District</h3>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Mahalle</span>
+                                        @foreach (var item in Model.adress)
+                                        {
+                                            <h3 class="card-title mb-2">@item.Street</h3>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Sokak</span>
+                                        @foreach (var item in Model.adress)
+                                        {
+                                            <h3 class="card-title mb-2">@item.Neighbourhood</h3>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-lg-12 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Açık Adres</span>
+                                        @foreach (var item in Model.adress)
+                                        {
+                                            <h3 class="card-title mb-2">@item.Detail</h3>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-lg-12 col-md-4 order-1">
+    <div class="col-lg-12 mb-4 order-0">
+        <div class="card">
+            <div class="d-flex align-items-end row">
+                <div class="col-sm-12">
+
+                    <div class="card-body">
+                        <h4>Sipariş Bilgileri</h4>
+                        <div class="row mb-2">
+                            <div class="col-lg-12 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">Sipariş Numarası</th>
+                                                    <th scope="col">Ürün Numarası</th>
+                                                    <th scope="col">Ürün İsmi</th>
+                                                    <th scope="col">Adet</th>
+                                                    <th scope="col">KDV</th>
+                                                    <th scope="col">Tutar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.orderDetails)
+                                                {
+                                                    <tr>
+                                                        <td>@item.OrderId</td>
+                                                        <td>@item.Product.Id</td>
+                                                        <td>
+                                                        <a asp-controller="Product" target="_blank" asp-action="ProductDetail" asp-area="" asp-route-ProductId="@item.Product.Id">
+                                                                @item.Product.ProductName
+                                                            </a>
+                                                        </td>
+                                                        
+                                                        <td>@item.Piece</td>
+                                                        @{
+                                                            var kdv = item.KDV;
+                                                            var price = item.Price;
+                                                            var total = kdv * Convert.ToDouble(price);
+                                                            string Stotal = total.ToString("C0");
+                                                            <td>@Stotal</td>
+                                                            var STotalPrice = item.TotalPrice *Convert.ToDecimal( item.Piece);
+                                                            <td>@STotalPrice.ToString("C0")</td>
+                                                        }
+                                                        
+                                                       
+                                                    </tr>
+                                                }
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="col-lg-12 col-md-4 order-1">
+    <div class="col-lg-12 mb-4 order-0">
+        <div class="card">
+            <div class="d-flex align-items-end row">
+                <div class="col-sm-12">
+
+                    <div class="card-body">
+                        <h4>Adres Bilgileri</h4>
+                        <div class="row mb-2">
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Sipariş Tarihi</span>
+
+                                            <h3 class="card-title mb-2">@Model.order.OrderSituation.OrderDate</h3>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="fw-semibold d-block mb-1">Toplam tutar</span>
+                                        @{
+
+                                            decimal Total = 0;
+                                            @foreach (var item in Model.orderDetails)
+                                            {
+                                                decimal x = item.TotalPrice * Convert.ToDecimal(item.Piece);
+                                                Total += x;
+                                            }
+                                            <h3 class="card-title mb-2">@Total.ToString("C0")</h3>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

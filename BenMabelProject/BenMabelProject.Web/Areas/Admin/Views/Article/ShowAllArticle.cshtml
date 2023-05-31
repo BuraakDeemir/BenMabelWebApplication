@@ -1,0 +1,40 @@
+﻿@model List<ArticleDto>
+
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <div class="table-responsive text-nowrap m-4">
+            <table class="table table-bordered" id="articleTables" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Durum</th>
+                    <th>Tıklanma Sayısı</th>
+                    <th>İşlemler</th>
+
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var article in Model)
+                    {
+                        <tr name="@article.Id">
+                            <td>@article.Title</td>
+                            <td>@article.CreatedDate.ToShortDateString()</td>
+                            <td>@(article.IsDeleted ? "Aktif Değil" : "Aktif")</td>
+                            <td>Hazırlanıyor</td>
+                        <td>
+                            <a class="btn btn-primary" data-id="@article.Id" asp-area="Admin" asp-controller="Article" asp-action="GetUpdateArticle" asp-route-Id="@article.Id">
+                                Güncelle
+                            </a>
+                        </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+@section scripts{
+    <script src="~/js/articleIndex.js" type="application/ecmascript"></script>
+}

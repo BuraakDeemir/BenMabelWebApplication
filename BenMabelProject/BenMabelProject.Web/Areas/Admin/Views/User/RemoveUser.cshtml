@@ -1,0 +1,38 @@
+﻿@model List<UserDto>
+
+<div class="card">
+    <h5 class="card-header">Tüm Kullanıcılar</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" id="ProductsTable">
+            <thead>
+                <tr>
+                    <th>İsim</th>
+                    <th>Soyisim</th>
+                    <th>Email</th>
+                    <th>Telefon</th>
+                    <th>Yetki</th>
+                    <th>İşlermler</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><strong>@item.FirstName</strong></td>
+                        <td><strong>@item.LastName</strong></td>
+                        <td>@item.Email</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.Role</td>
+                        <td style="">
+                            <a class="btn btn-primary" data-id="@item.Id" asp-area="Admin" asp-controller="User" asp-action="RemoveUserAction" asp-route-UserId="@item.Id">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/AllProducts.js" type="application/ecmascript"></script>
+}

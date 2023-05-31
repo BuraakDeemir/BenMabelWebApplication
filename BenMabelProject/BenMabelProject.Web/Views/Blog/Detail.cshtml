@@ -1,0 +1,41 @@
+﻿@model ArticleDto
+<section class="blog-posts blog-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="post-wrap detail">
+                    <article class="post clearfix">
+                        <div class="title-post">
+                            <h2><a href="blog-detail.html">@Model.Title</a></h2>
+                        </div>
+                        <div class="content-post">
+                            <ul class="meta-post">
+                                <li class="author padding-left-2">
+                                    <span>Yazar: </span><a href="#">Admin</a>
+                                </li>
+                                <li class="comment">
+                                    <a href="#">10 Yorum</a>
+                                </li>
+                                <li class="date">
+                                    <span>Tarih @Model.CreatedDate</span>
+                                </li>
+                            </ul>
+                            <div class="featured-post">
+                                <div class="row">
+                                    <div class="col-3"></div>
+                                    <div class="col-6"> <img src="~/images/@Model.Image.Sml_FileName" alt="image"></div>
+                                    <div class="col-3"></div>
+                                </div>
+                            </div>
+                            <div class="entry-post">
+                                <p>@Model.Content</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="main-single">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

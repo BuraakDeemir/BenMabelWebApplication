@@ -1,0 +1,77 @@
+﻿@using BenMabelProject.Entity.DtoS.Orders;
+@model OrderDetailDto
+
+
+<div class="container"> 
+    <div class="row">
+        <div class="col-lg-12 col-md-4 order-1">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Sipariş Numarası</th>
+                        <th scope="col">Ürün Numarası</th>
+                        <th scope="col">Ürün İsmi</th>
+                        <th scope="col">Adet</th>
+                        <th scope="col">KDV</th>
+                        <th scope="col">Tutar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.orderDetails)
+                    {
+                        <tr>
+                            <td>@item.OrderId</td>
+                            <td>@item.Product.Id</td>
+                            <td>
+                                <a asp-controller="Product" target="_blank" asp-action="ProductDetail" asp-area="" asp-route-ProductId="@item.Product.Id">
+                                    @item.Product.ProductName
+                                </a>
+                            </td>
+
+                            <td>@item.Piece</td>
+                            @{
+                                var kdv = item.KDV;
+                                var price = item.Price;
+                                var total = kdv * Convert.ToDouble(price);
+                                string Stotal = total.ToString("C0");
+                                <td>@Stotal</td>
+                                var STotalPrice = item.TotalPrice * Convert.ToDecimal(item.Piece);
+                                <td>@STotalPrice.ToString("C0")</td>
+                            }
+
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-4 order-1">
+            <span class="fw-semibold d-block mb-1">Sipariş Tarihi</span>
+
+            <h3 class="card-title mb-2">@Model.order.OrderSituation.OrderDate</h3>
+
+        </div>
+        <div class="col-lg-6 col-md-4 order-1">
+            <span class="fw-semibold d-block mb-1">Toplam tutar</span>
+            @{
+
+                decimal Total = 0;
+                @foreach (var item in Model.orderDetails)
+                {
+                    decimal x = item.TotalPrice * Convert.ToDecimal(item.Piece);
+                    Total += x;
+                }
+                <h3 class="card-title mb-2">@Total.ToString("C0")</h3>
+            }
+            </div>
+       
+    </div>
+</div>
+
+
+
+

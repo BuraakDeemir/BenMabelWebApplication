@@ -1,0 +1,88 @@
+﻿@model ProfileDto
+
+<div class="container m-4">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-10">
+    <div class="row">
+        <div class="col-9" style="font-size:20px; margin-bottom:15px;"><strong>Kişisel Bilgiler</strong></div>
+                <div class="col-3" style="font-size:20px; margin-bottom:15px;"><a class="btn btn-danger" asp-controller="User" asp-action="Logout">Çıkış</a></div>
+            </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-5">
+            <div class="row"><div class="col-12" style="font-size:15px;"><strong>Ad Soyad : @Model.person.Name @Model.person.Surname</strong></div></div>
+            
+            <div class="row"><div class="col-12" style="font-size:15px;"><strong>Kullanıcı Adı : @Model.user.Username</strong></div></div>
+            @foreach (var item in Model.phone)
+            {
+                <div class="row"><div class="col-12" style="font-size:15px;"><strong>GSM : @item.Iphone</strong></div></div>
+            }
+            @foreach (var item in Model.email)
+            {
+                <div class="row"><div class="col-12" style="font-size:15px;"><strong>Email : @item.Email</strong></div></div>
+            }
+        </div>
+        <div class="col-5">
+
+            @foreach (var item in Model.adress)
+            {
+                <div class="row"><div class="col-12" style="font-size:15px;"><strong>Adres : @item.Neighbourhood , @item.Street </strong></div></div>
+                <div class="row"><div class="col-12" style="font-size:15px;"><strong>@item.District , @item.Ctiy </strong></div></div>
+                <div class="row"><div class="col-12" style="font-size:15px;"><strong>@item.Detail</strong></div></div>
+            }
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-10">
+            <div class="row">
+                <div class="col-9" style="font-size:20px; margin-bottom:15px;"><strong>Geçmiş Siparişler</strong></div>
+                <div class="col-3" style="font-size:20px; margin-bottom:15px;">
+                   </div>
+            </div>
+        </div>
+    </div>
+    @foreach (var item in Model.order)
+    {
+        <div class="row">
+        <div class="col-2"></div>
+        <div class="col-10"><div class="row justify-content-center align-items-center mb-3">
+            <div class="col-3" style="font-size:15px;"><strong>Sipariş Numarası : @item.Id</strong></div>
+                    <div class="col-3"> Tarih : @item.OrderSituation.OrderDate</div>
+
+
+                    @{
+                        var statu = item.Stuation;
+                        <div class="col-3">
+                            @if (statu == 0)
+                            {
+                                <label> Siparişiniz Onay Bekliyor</label>
+                            }
+                            else if (statu == 1)
+                            {
+                                <label> Siparişin Hazırlanıyor</label>
+                            }
+                            else if (statu == 2)
+                            {
+                                <label> Sipariş Kargoya Verildi</label>
+                            }
+                            else if (statu == 3)
+                            {
+                                <label> Sipariş Teslim Edildi</label>
+                            }
+                        </div>
+                    }
+
+
+
+                    <div class="col-3"><a class="btn btn-danger" style="color:white;" asp-controller="Order" asp-action="OrderDetail" asp-route-Id="@item.Id">Detay</a></div>
+                </div></div>
+        </div>
+    }
+    
+</div>

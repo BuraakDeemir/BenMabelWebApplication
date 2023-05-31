@@ -1,0 +1,98 @@
+﻿@model List<BasketDto>
+<div id="site-header-wrap">
+</div>
+
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">SEPET</h1>
+                </div>
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                        <li><a asp-controller="Basket" asp-action="Index">Sepet</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-top:50px;">
+
+    <div class="table-responsive custom-table-responsive">
+        <table class="table custom-table">
+            @*<thead>
+            <tr style="background-color:aliceblue;">
+            <th scope="col">Ürün Adı</th>
+            <th scope="col">Adet</th>
+            <th scope="col">Ürün Fiyatı</th>
+            <th scope="col">Toplam Fiyat</th>
+            <th scope="col">Sepetten Çıkar</th>
+            </tr>
+            </thead>*@
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var price = item.ProductPrice;
+                    var Tex = item.KDV;
+                    var totalPrice = (price * Tex) + price;
+                    var TexPrice = price * Tex;
+                    <tr class="">
+                        <td></td>
+                        <td><small class="d-block">Ürün</small><strong><a asp-controller="Product" asp-action="ProductDetail" asp-route-ProductId="@item.ProductId">@item.ProductName</a></strong></td>
+                        <td><small class="d-block">Adet</small>@item.Piece</td>
+                        <td>Ürün Fiyatı :  @totalPrice TL<small class="d-block">KDV : @TexPrice TL</small></td>
+                        <td><small class="d-block">Toplam Tutar</small>@item.TotalPrice</td>
+                        <td><a class="btn btn-danger" style="color:white" asp-controller="Basket" asp-action="DeleteProductFromBasket" asp-route-Id="@item.Id">Vazgeç</a></td>
+                    </tr>
+                    <tr class="spacer"><td colspan="100"></td></tr>
+                }
+
+            </tbody>
+
+        </table>
+        <div class="container">
+
+            <div class="row">
+                @{
+                    if (Model.Count != 0)
+                    {
+                        double SubPrice = 0;
+                        double SubTex = 0;
+                        <div class="col-5" style="margin-left:40px;">
+                            @foreach (var item in Model)
+                            {
+                                double Tex = item.ProductPrice * item.KDV;
+                                double price = item.TotalPrice;
+                                SubPrice = price + SubPrice;
+                                SubTex = Tex + SubTex;
+                            }
+                            <label><strong>Toplam Tutar : @SubPrice TL (KDV Dahil)</strong></label>
+                            <label class="d-block"><strong>Vergiler : @SubTex TL</strong></label>
+                        </div>
+                        <div class="col-4"></div>
+                        <div class="col-2"><a asp-controller="Order" asp-action="Index" class="btn btn-success" style="color:white;">Sepeti Onayla</a></div>
+                    }
+                }
+            </div>
+            <div class="row">
+            <h2 class="text-center">Sepet Boş</h2>
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
+

@@ -1,0 +1,78 @@
+﻿   @model List<ProductDto>
+<div id="site-header-wrap">
+</div>
+<div id="loading-overlay">
+    <div class="loader"></div>
+</div>
+
+<div class="boxed">
+    <div id="site-header-wrap">
+    </div>
+
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-title-heading">
+                        <h1 class="title">Ürünler</h1>
+                    </div>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                            <li><a asp-controller="Product" asp-action="Index">Ürünler</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="flat-row main-shop shop-4col">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="filter-shop bottom_68 clearfix">
+                        <div class="product-content product-fourcolumn clearfix">
+                       <ul class="product style2">
+
+                                <!-- DataBase -->
+                                @foreach (var item in Model)
+                                {
+                                    <li class="product-item @item.Category.CategoryTag">
+                                        <div class="product-thumb clearfix">
+                                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-ProductId="@item.Id">
+                                                <img src="~/images/@item.ProductImg.Img_1_FileName" width="90%" alt="@item.ProductName" />
+                                            </a>
+                                        </div>
+                                        <div class="product-info clearfix" style="margin-top:30px;">
+                                            <span class="product-title">@item.ProductName</span>
+                                            <div class="price">
+                                                <ins>
+                                                    @{
+                                                        double price = Convert.ToDouble(item.ProductPrice.Price);
+                                                        double kdv = Convert.ToDouble(item.ProductPrice.KDV);
+                                                        double total = (price * kdv) + price;
+
+                                                    
+                                                    <span class="amount">@total TL </span>
+                                                    }
+                                                </ins>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart text-center">
+                                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-ProductId="@item.Id">DETAYLI İNCELE</a>
+                                        </div>
+                                        <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
+                                    </li>
+                                }
+                                <!-- DataBase -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <a class="go-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>
